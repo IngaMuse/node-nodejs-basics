@@ -1,6 +1,7 @@
 import { access, writeFile } from "node:fs/promises";
+import path from "path";
 
-const filePath = "src/fs/files/fresh.txt";
+const filePath = path.resolve("src", "fs", "files", "fresh.txt");
 const content = "I am fresh and young";
 
 const create = async () => {
