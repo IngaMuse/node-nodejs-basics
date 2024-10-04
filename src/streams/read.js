@@ -1,5 +1,17 @@
+import path from "path";
+import { fileURLToPath } from "url";
+import { createReadStream } from "node:fs";
+import { pipeline } from "stream/promises";
+import os from "os"
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const readFile = path.resolve(__dirname, "files", "fileToRead.txt");
+
 const read = async () => {
-    // Write your code here 
+  const stream = createReadStream(readFile, "utf-8");
+  await pipeline(stream, process.stdout, {end: false});
+  console.log(os.EOL);
 };
 
 await read();
